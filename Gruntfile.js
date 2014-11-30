@@ -32,11 +32,38 @@ module.exports = function(grunt) {
     sass_version: {
       none: {
       },
+      invalid: {
+        version: '1'
+      },
       correct: {
         version: '3.2.13'
       },
+      correctMinor: {
+        options: {
+          ignorePatch: true
+        },
+        version: '3.2.0'
+      },
+      correctMajor: {
+        options: {
+          ignoreMinor: true
+        },
+        version: '3.0.0'
+      },
       incorrect: {
         version: '0.0.1'
+      },
+      incorrectMinor: {
+        options: {
+          ignorePatch: true
+        },
+        version: '3.3.0'
+      },
+      incorrectMajor: {
+        options: {
+          ignoreMinor: true
+        },
+        version: '4.0.0'
       }
     },
 
