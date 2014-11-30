@@ -30,21 +30,13 @@ module.exports = function(grunt) {
 
     // Configuration to be run (and then tested).
     sass_version: {
-      default_options: {
-        options: {
-        },
-        files: {
-          'tmp/default_options': ['test/fixtures/testing', 'test/fixtures/123']
-        }
+      none: {
       },
-      custom_options: {
-        options: {
-          separator: ': ',
-          punctuation: ' !!!'
-        },
-        files: {
-          'tmp/custom_options': ['test/fixtures/testing', 'test/fixtures/123']
-        }
+      correct: {
+        version: '3.2.13'
+      },
+      incorrect: {
+        version: '0.0.1'
       }
     },
 
@@ -68,6 +60,6 @@ module.exports = function(grunt) {
   grunt.registerTask('test', ['clean', 'sass_version', 'nodeunit']);
 
   // By default, lint and run all tests.
-  grunt.registerTask('default', ['jshint', 'test']);
+  grunt.registerTask('default', ['jshint', 'sass_version:none --force', 'sass_version:correct']);
 
 };

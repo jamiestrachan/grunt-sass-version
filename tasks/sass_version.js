@@ -11,56 +11,29 @@ var exec = require('child_process').exec;
 
 module.exports = function(grunt) {
 
-  // Please see the Grunt documentation for more information regarding task
-  // creation: http://gruntjs.com/creating-tasks
-
   grunt.registerMultiTask('sass_version', 'Confirm that a particular version of Sass is available to Grunt.', function() {
-    // Merge task-specific and/or target-specific options with these defaults.
-    var options = this.options({
-      sassVersion: "3.4.9"
-    });
+    var done = this.async();
+    var version = this.data.version;
+    var cp;
 
-    var cp = exec('sass -v', function (err, stdout, stderr) {
-      var sassRegex = new RegExp("\\b" + options.sassVersion + "\\b");
+    if (version === undefined) {
+      grunt.fail.warn("You must specify a version for this task.\n");
+    } else {
+      grunt.log.writeln(["Testing for Sass version " + version]);
 
-      /*
-      if (!sassVersion) {
-          grunt.fail.fatal("Please define the version of Sass you are using as the 'sassVersion' property in /src/config/spore.json.");
-      }
-      */
+      cp = exec('sass -v', function (err, stdout, stderr) {
+        var sassRegex = new RegExp("\\b" + version + "\\b");
 
-      if (!sassRegex.test(stdout)) {
-          grunt.fail.warn("Incorrect Sass Version.\nExpected " + options.sassVersion + ", you have\n" + stdout + "\nTo install, try 'gem install sass -v" + options.sassVersion + "'.\nYou may have to uninstall other versions with 'gem uninstall sass'.");
-      }
-    });
-
-    /*
-    // Iterate over all specified file groups.
-    this.files.forEach(function(f) {
-      // Concat specified files.
-      var src = f.src.filter(function(filepath) {
-        // Warn on and remove invalid source files (if nonull was set).
-        if (!grunt.file.exists(filepath)) {
-          grunt.log.warn('Source file "' + filepath + '" not found.');
-          return false;
+        if (sassRegex.test(stdout)) {
+          grunt.log.writeln(["Found Sass version " + version]);
         } else {
-          return true;
+            grunt.fail.warn("Incorrect Sass version.\nExpected " + version + ", you have " + stdout + "\nTo install, try 'gem install sass -v" + version + "'.\nYou may have to uninstall other versions with 'gem uninstall sass'.\n\n");
         }
-      }).map(function(filepath) {
-        // Read file source.
-        return grunt.file.read(filepath);
-      }).join(grunt.util.normalizelf(options.separator));
 
-      // Handle options.
-      src += options.punctuation;
+        done();
+      });      
+    }
 
-      // Write the destination file.
-      grunt.file.write(f.dest, src);
-
-      // Print a success message.
-      grunt.log.writeln('File "' + f.dest + '" created.');
-    });
-    */
   });
 
 };
