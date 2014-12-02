@@ -37,51 +37,64 @@ grunt.initConfig({
 
 ### Options
 
-#### options.separator
-Type: `String`
-Default value: `',  '`
+#### options.ignorePatch
+Type: `Boolean`
+Default value: `false`
 
-A string value that is used to do something with whatever.
+Set to `true` if you wish to ignore differences in the patch version.
 
-#### options.punctuation
-Type: `String`
-Default value: `'.'`
+#### options.ignoreMinor
+Type: `Boolean`
+Default value: `false`
 
-A string value that is used to do something else with whatever else.
+Set to `true` if you wish to ignore differences in the patch version.
 
 ### Usage Examples
 
 #### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
+In this example, the default options are used to test the available version of Sass
+against a desired version as specified in the `version` property. The build will fail
+unless the Sass version as reported by `sass -v` matches exactly.
 
 ```js
 grunt.initConfig({
   sass_version: {
     options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
+    version: "3.4.9"
+  }
 });
 ```
 
 #### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
+In this example, custom options are used to test only a portion of the Sass version. If
+`ignorePatch` is set to true, then only the major and minor parts of the version number
+are required to match.
 
 ```js
 grunt.initConfig({
   sass_version: {
     options: {
-      separator: ': ',
-      punctuation: ' !!!',
+      ignorePatch: true
     },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
+    version: "3.4.9"
+  }
 });
 ```
 
+If the `ignoreMinor` option is set to true, then only the major part of the version
+number is required to match. The `ignoreMinor` option implies the `ignorePatch` option
+so you don't need to set both.
+
+```js
+grunt.initConfig({
+  sass_version: {
+    options: {
+      ignoreMinor: true
+    },
+    version: "3.4.9"
+  }
+});
+```
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
