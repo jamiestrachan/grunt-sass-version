@@ -1,6 +1,5 @@
 'use strict';
-//var exec = require('child_process').exec;
-var shell = require('shelljs');
+var shell = require('shelljs'); // use shelljs for its synchronous exec function
 
 exports.init = function(grunt) {
 
