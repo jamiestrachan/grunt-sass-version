@@ -23,11 +23,6 @@ module.exports = function(grunt) {
       }
     },
 
-    // Before generating any new files, remove any previously-created files.
-    clean: {
-      tests: ['tmp']
-    },
-
     // Configuration to be run (and then tested).
     sass_version: {
       none: {
@@ -51,19 +46,19 @@ module.exports = function(grunt) {
         version: '3.0.0'
       },
       incorrect: {
-        version: '0.0.1'
+        version: '99.99.99'
       },
       incorrectMinor: {
         options: {
           ignorePatch: true
         },
-        version: '3.3.0'
+        version: '99.99.0'
       },
       incorrectMajor: {
         options: {
           ignoreMinor: true
         },
-        version: '4.0.0'
+        version: '99.0.0'
       }
     },
 
@@ -82,9 +77,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-nodeunit');
 
-  // Whenever the "test" task is run, first clean the "tmp" dir, then run this
-  // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'nodeunit']);
+  // Whenever the "test" task is run, execute available nodeunit tests.
+  grunt.registerTask('test', ['nodeunit']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test']);
