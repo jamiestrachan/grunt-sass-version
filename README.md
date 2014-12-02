@@ -59,8 +59,9 @@ unless the Sass version as reported by `sass -v` matches exactly.
 ```js
 grunt.initConfig({
   sass_version: {
-    options: {},
-    version: "3.4.9"
+    your_target: {
+      version: "3.4.9"
+    }
   }
 });
 ```
@@ -76,7 +77,9 @@ grunt.initConfig({
     options: {
       ignorePatch: true
     },
-    version: "3.4.9"
+    your_target: {
+      version: "3.4.9"
+    }
   }
 });
 ```
