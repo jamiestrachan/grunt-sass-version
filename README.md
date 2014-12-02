@@ -94,7 +94,9 @@ grunt.initConfig({
     options: {
       ignoreMinor: true
     },
-    version: "3.4.9"
+    your_target: {
+      version: "3.4.9"
+    }
   }
 });
 ```
