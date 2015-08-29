@@ -59,8 +59,9 @@ unless the Sass version as reported by `sass -v` matches exactly.
 ```js
 grunt.initConfig({
   sass_version: {
-    options: {},
-    version: "3.4.9"
+    your_target: {
+      version: "3.4.9"
+    }
   }
 });
 ```
@@ -76,7 +77,9 @@ grunt.initConfig({
     options: {
       ignorePatch: true
     },
-    version: "3.4.9"
+    your_target: {
+      version: "3.4.9"
+    }
   }
 });
 ```
@@ -91,7 +94,9 @@ grunt.initConfig({
     options: {
       ignoreMinor: true
     },
-    version: "3.4.9"
+    your_target: {
+      version: "3.4.9"
+    }
   }
 });
 ```
@@ -99,4 +104,4 @@ grunt.initConfig({
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
-_(Nothing yet)_
+ * 2014-12-02 v0.1.0  First official release.
