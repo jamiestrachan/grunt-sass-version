@@ -29,7 +29,7 @@ grunt.initConfig({
       // Task-specific options go here.
     },
     your_target: {
-      version: "#.#.#" // Sass version to test for goes here
+      // Target-specific file lists and/or options go here.
     },
   },
 });
