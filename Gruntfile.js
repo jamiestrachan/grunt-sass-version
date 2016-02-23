@@ -23,45 +23,6 @@ module.exports = function(grunt) {
       }
     },
 
-    // Configuration to be run (and then tested).
-    sass_version: {
-      none: {
-      },
-      invalid: {
-        version: '1'
-      },
-      correct: {
-        version: '3.2.13'
-      },
-      correctMinor: {
-        options: {
-          ignorePatch: true
-        },
-        version: '3.2.0'
-      },
-      correctMajor: {
-        options: {
-          ignoreMinor: true
-        },
-        version: '3.0.0'
-      },
-      incorrect: {
-        version: '99.99.99'
-      },
-      incorrectMinor: {
-        options: {
-          ignorePatch: true
-        },
-        version: '99.99.0'
-      },
-      incorrectMajor: {
-        options: {
-          ignoreMinor: true
-        },
-        version: '99.0.0'
-      }
-    },
-
     // Unit tests.
     nodeunit: {
       tests: ['test/*_test.js']
