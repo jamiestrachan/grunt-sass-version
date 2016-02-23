@@ -1,7 +1,7 @@
 {
   "name": "grunt-sass-version",
   "description": "Confirm that a particular version of Sass is available to Grunt.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/jamiestrachan/grunt-sass-version",
   "author": {
     "name": "Jamie Strachan",
